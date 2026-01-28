@@ -1,0 +1,172 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+/* Engineered Bedrock – Monolithic Engineering Brutalism */
+@import url("https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Inter:wght@400;500;600&family=Space+Grotesk:wght@400;500;600&display=swap");
+
+@layer base {
+  :root {
+    /* Bedrock tokens (exact hex mapped to HSL) */
+    --bedrock: 220 22% 7%; /* #0E1116 */
+    --basalt: 210 15% 14%; /* #1F242A */
+    --granite: 215 12% 20%; /* #2C3138 */
+    --structural: 233 51% 37%; /* #2F3A8F */
+    --sustain: 100 49% 51%; /* #6DBE45 */
+    --steel: 214 16% 90%; /* #E3E6EA */
+
+    --background: var(--bedrock);
+    --foreground: var(--steel);
+
+    --card: var(--basalt);
+    --card-foreground: var(--steel);
+
+    --popover: var(--granite);
+    --popover-foreground: var(--steel);
+
+    --primary: var(--structural);
+    --primary-foreground: var(--steel);
+
+    --secondary: var(--granite);
+    --secondary-foreground: var(--steel);
+
+    --muted: var(--basalt);
+    --muted-foreground: 214 14% 74%;
+
+    --accent: var(--structural);
+    --accent-foreground: var(--steel);
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214 16% 40%;
+    --input: 214 16% 40%;
+    --ring: var(--structural);
+
+    /* No rounding. No softness. */
+    --radius: 0rem;
+
+    /* Motion (only) */
+    --motion-duration: 650ms;
+    --motion-ease: cubic-bezier(0.22, 1, 0.36, 1);
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    /* Keep parity: Bedrock is the default mode */
+    --background: var(--bedrock);
+    --foreground: var(--steel);
+
+    --card: var(--basalt);
+    --card-foreground: var(--steel);
+
+    --popover: var(--granite);
+    --popover-foreground: var(--steel);
+
+    --primary: var(--structural);
+    --primary-foreground: var(--steel);
+
+    --secondary: var(--granite);
+    --secondary-foreground: var(--steel);
+
+    --muted: var(--basalt);
+    --muted-foreground: 214 14% 74%;
+
+    --accent: var(--structural);
+    --accent-foreground: var(--steel);
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214 16% 40%;
+    --input: 214 16% 40%;
+    --ring: var(--structural);
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: theme(fontFamily.body);
+  }
+
+  a,
+  button,
+  input,
+  textarea,
+  select {
+    transition: all var(--motion-duration) var(--motion-ease);
+  }
+}
+
+@layer utilities {
+  .engraved {
+    text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.08), -1px -1px 0 rgba(0, 0, 0, 0.6);
+    letter-spacing: 0.06em;
+  }
+
+  .bedrock-seam {
+    background-image: linear-gradient(
+        90deg,
+        hsl(var(--steel) / 0.05) 0,
+        hsl(var(--steel) / 0.05) 1px,
+        transparent 1px,
+        transparent 12px
+      ),
+      linear-gradient(
+        0deg,
+        hsl(var(--steel) / 0.05) 0,
+        hsl(var(--steel) / 0.05) 1px,
+        transparent 1px,
+        transparent 12px
+      );
+    background-size: 12px 12px;
+  }
+
+  .plate {
+    @apply border bg-card;
+  }
+
+  .plate-compress {
+    transform: translateY(0) scale(1);
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .plate-compress:hover {
+      transform: translateY(1px) scale(0.99);
+    }
+    .plate-compress:active {
+      transform: translateY(2px) scale(0.985);
+    }
+  }
+}
